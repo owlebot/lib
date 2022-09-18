@@ -1,6 +1,6 @@
-# template
+# lib
 
-Template repo for future node projects
+Central repo for all shared tools in Owlebot projects.
 
 ## Setup
 

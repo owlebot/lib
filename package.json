@@ -1,17 +1,19 @@
 {
-	"name": "@owlebot/template",
+	"name": "@owlebot/lib",
 	"version": "0.1.0",
-	"description": "Owlebot template.",
+	"description": "Owlebot central shared repository.",
 	"author": "Khaaz <khaaz.dev@gmail.com>, Xerstom <xerstomdev@outlook.fr>",
-	"link": "https://github.com/owlebot/template",
-	"main": "./src/index.js",
+	"link": "https://github.com/owlebot/lib",
+	"main": "./index.js",
 	"type": "module",
 	"license": "MIT",
 	"engines": {
 		"node": ">=18.0.0"
 	},
-	"private": true,
-	"dependencies": {},
+	"dependencies": {
+		"amqplib": "^0.10.3",
+		"axios": "^0.27.2"
+	},
 	"devDependencies": {
 		"@owlebot/eslint-config": "owlebot/eslint-config#main",
 		"eslint": "^8.23.0"
@@ -24,11 +26,11 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/owlebot/template.git"
+		"url": "git+https://github.com/owlebot/lib.git"
 	},
 	"bugs": {
-		"url": "https://github.com/owlebot/template/issues"
+		"url": "https://github.com/owlebot/lib/issues"
 	},
-	"homepage": "https://github.com/owlebot/template#readme",
+	"homepage": "https://github.com/owlebot/lib#readme",
 	"keywords": []
 }
