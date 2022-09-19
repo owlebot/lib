@@ -57,7 +57,7 @@ export class Requester {
 	async #_request(type, url, options = {} ) {
 		const request = {
 			method: type,
-			url: this.#baseURL + url,
+			url: url,
 		};
 		
 		request.headers ??= options.headers;
