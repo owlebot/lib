@@ -3,8 +3,8 @@ export default class Connector {
 
 	url;
 
-	constructor(config) {
-		this.url = config.api.url;
+	constructor(url) {
+		this.url = url;
 		this._connect();
 	}
 

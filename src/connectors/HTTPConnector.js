@@ -5,9 +5,9 @@ import Connector from "./Connector.js";
 export default class HTTPConnector extends Connector {
 	auth;
 
-	constructor(config) {
-		super(config);
-		this.auth = config.api.auth;
+	constructor(url, apiAuth) {
+		super(url);
+		this.auth = apiAuth;
 	}
 
 	async connect() {
