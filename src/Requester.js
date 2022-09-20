@@ -68,7 +68,13 @@ export class Requester {
 			return new Response(res);
 		} catch (error) {
 			console.error(error);
-			return new Response(null, error);
+			return new Response(
+				{
+					data: error.request.res.statusMessage,
+					status: error.request.res.statusCode
+				},
+				error
+			);
 		}
 	}
 	
