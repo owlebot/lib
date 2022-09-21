@@ -36,17 +36,23 @@ export class Requester {
 	#headers;
 	
 	#instance;
+
+	#logger;
 	
 	/**
 	 * Creates an instance of Requester.
 	 *
 	 * @param {String} base - Base URL
-	 * @param {Object} [headers={}] Default headers for axios
+	 * @param {Object} [headers={}] - Default headers for axios
+	 * @param {Object<Logger>} [logger] - Logger
 	 * @memberof Requester
 	 */
-	constructor(base, headers = {} ) {
+	constructor(base, headers = {}, logger) {
 		this.#baseURL = base;
 		this.#headers = headers;
+		
+		this.#logger = logger;
+		this.#logger?.debug("Requester", `Initialisation: ${base}`);
 		
 		this.#instance = axios.create( {
 			baseURL: base,
@@ -55,29 +61,31 @@ export class Requester {
 	}
 	
 	async #_request(type, url, options = {} ) {
+		this.#logger?.debug("Requester", "request");
 		const request = {
 			method: type,
-			url: url,
+			url,
 		};
 		
 		request.headers ??= options.headers;
 		request.data ??= options.body;
 		
+		this.#logger?.debug("Requester", `request obj: ${request}`);
 		try {
 			const res = await this.#instance.request(request);
+			this.#logger?.debug("Requester", "Request success");
 			return new Response(res);
 		} catch (error) {
-			console.error(error);
-			return new Response(
-				{
-					data: error.request.res.statusMessage,
-					status: error.request.res.statusCode
-				},
-				error
+			this.#logger?.debug("Requester", "Request failure");
+			this.#logger.error(error);
+			return new Response( {
+				data: error.request.res.statusMessage,
+				status: error.request.res.statusCode,
+			},
+			error
 			);
 		}
 	}
-	
 	
 	/**
 	 * Perform a GET request
@@ -87,6 +95,7 @@ export class Requester {
 	 * @returns {Promise<Response>}
 	 */
 	get(url, options) {
+		this.#logger?.debug("Requester", `GET on: ${url}`);
 		return this.#_request("get", url, options);
 	}
 	
@@ -99,6 +108,7 @@ export class Requester {
 	 * @returns {Promise<Response>}
 	 */
 	post(url, body, options) {
+		this.#logger?.debug("Requester", `POST on: ${url}`);
 		return this.#_request("post", url, { ...options, body } );
 	}
 	
@@ -111,6 +121,7 @@ export class Requester {
 	 * @returns {Promise<Response>}
 	 */
 	put(url, body, options) {
+		this.#logger?.debug("Requester", `PUT on: ${url}`);
 		return this.#_request("put", url, { ...options, body } );
 	}
 	
@@ -122,6 +133,7 @@ export class Requester {
 	 * @returns {Promise<Response>}
 	 */
 	delete(url, options) {
+		this.#logger?.debug("Requester", `DELETE on: ${url}`);
 		return this.#_request("delete", url, options);
 	}
 }

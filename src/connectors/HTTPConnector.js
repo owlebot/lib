@@ -3,24 +3,34 @@ import axios from "axios";
 import Connector from "./Connector.js";
 
 export default class HTTPConnector extends Connector {
-	auth;
+	#instance;
 
 	constructor(url, apiAuth) {
 		super(url);
-		this.auth = apiAuth;
+
+		this.#instance = axios.create( {
+			baseURL: url,
+			headers: { authorization: apiAuth },
+		} );
 	}
 
 	async connect() {
 		return true;
 	}
 
-	async send(req) {
+	async send(req, endpoint) {
 		if (!this.ready) {
 			return false;
 		}
+
+		const request = {
+			method: "post",
+			url: endpoint,
+			data: req,
+		};
 		
 		try {
-			await axios.post(`${this.url}/post`, req, { headers: { authorization: this.auth } } );
+			await this.#instance.request(request);
 			return true;
 		} catch (err) {
 			console.error(err);
