@@ -124,6 +124,19 @@ export class Requester {
 		this.#logger?.debug("Requester", `PUT on: ${url}`);
 		return this.#_request("put", url, { ...options, body } );
 	}
+
+	/**
+	 * Perform a PATCH request
+	 *
+	 * @param {String} url
+	 * @param {Object} body
+	 * @param {Object} options
+	 * @returns {Promise<Response>}
+	 */
+	patch(url, body, options) {
+		this.#logger?.debug("Requester", `PATCH on: ${url}`);
+		return this.#_request("patch", url, { ...options, body } );
+	}
 	
 	/**
 	 * Perform a DELETE request
