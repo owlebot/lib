@@ -8,10 +8,15 @@ export default class HTTPConnector extends Connector {
 	constructor(url, apiAuth) {
 		super(url);
 
-		this.#instance = axios.create( {
+		const options = {
 			baseURL: url,
-			headers: { authorization: apiAuth },
-		} );
+		};
+
+		if (apiAuth) {
+			options.headers = { authorization: apiAuth };
+		}
+
+		this.#instance = axios.create(options);
 	}
 
 	async connect() {
