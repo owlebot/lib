@@ -59,9 +59,8 @@ export class Requester {
 			headers,
 		} );
 	}
-	
+
 	async #_request(type, url, options = {} ) {
-		this.#logger?.debug("Requester", "request");
 		const request = {
 			method: type,
 			url,
@@ -70,20 +69,19 @@ export class Requester {
 		request.headers ??= options.headers;
 		request.data ??= options.body;
 		
-		this.#logger?.debug("Requester", `request obj: ${request}`);
+		this.#logger?.debug("Requester", "request obj: ", request);
 		try {
 			const res = await this.#instance.request(request);
 			this.#logger?.debug("Requester", "Request success");
 			return new Response(res);
 		} catch (error) {
 			this.#logger?.debug("Requester", "Request failure");
-			this.#logger.error(error);
+			this.#logger?.error(error);
 			return new Response( {
-				data: error.request.res.statusMessage,
-				status: error.request.res.statusCode,
+				data: error.request?.res?.statusMessage,
+				status: error.request?.res?.statusCode,
 			},
-			error
-			);
+			error);
 		}
 	}
 	
