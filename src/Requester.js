@@ -60,6 +60,20 @@ export class Requester {
 		} );
 	}
 
+	
+	/**
+	 * Chainable method to add Logger
+	 *
+	 * @param {Logger} logger
+	 * @return {Requester} - this
+	 * @memberof Requester
+	 */
+	 logger(logger) {
+		this.#logger = logger;
+		return this;
+	}
+	
+
 	async #_request(type, url, options = {} ) {
 		const request = {
 			method: type,
