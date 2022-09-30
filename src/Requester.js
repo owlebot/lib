@@ -83,14 +83,15 @@ export class Requester {
 		request.headers ??= options.headers;
 		request.data ??= options.body;
 		
-		this.#logger?.debug("Requester", "request obj: ", request);
+		this.#logger?.debug("Requester", "Request object:", request);
 		try {
 			const res = await this.#instance.request(request);
-			this.#logger?.debug("Requester", "Request success");
-			return new Response(res);
+			const standardResponse = new Response(res);
+			this.#logger?.debug("Requester", "Request response:", standardResponse);
+			return standardResponse;
 		} catch (error) {
-			this.#logger?.debug("Requester", "Request failure");
-			this.#logger?.error(error);
+			this.#logger?.error("Requester", "Request failure", error);
+
 			return new Response( {
 				data: error.request?.res?.statusMessage,
 				status: error.request?.res?.statusCode,
