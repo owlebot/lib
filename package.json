@@ -12,7 +12,7 @@
 	},
 	"dependencies": {
 		"amqplib": "^0.10.3",
-		"axios": "^0.27.2"
+		"axios": "^1.2.3"
 	},
 	"devDependencies": {
 		"@owlebot/eslint-config": "^1.0.0",
