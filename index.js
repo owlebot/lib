@@ -1,4 +1,4 @@
-export { default as AMQPConnector } from "./src/connectors/AMQPConnector.js";
-export { default as Connnector } from "./src/connectors/Connector.js";
-export { default as HTTPConnector } from "./src/connectors/HTTPConnector.js";
-export * from "./src/Requester.js";
+export * from "./packages/connectors/index.js";
+export * from "./packages/metrics/index.js";
+export * from "./packages/middlewares/index.js";
+export * from "./packages/requester/index.js";
