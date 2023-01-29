@@ -1,8 +1,8 @@
 import amqp from "amqplib";
 
-import Connector from "./Connector.js";
+import { Connector } from "./Connector.js";
 
-export default class AMQPConnector extends Connector {
+export class AMQPConnector extends Connector {
 	#channel;
 
 	#channelName = "discord";

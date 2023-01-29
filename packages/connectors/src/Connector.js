@@ -1,4 +1,4 @@
-export default class Connector {
+export class Connector {
 	ready = false;
 
 	url;

@@ -1,8 +1,8 @@
 import axios from "axios";
 
-import Connector from "./Connector.js";
+import { Connector } from "./Connector.js";
 
-export default class HTTPConnector extends Connector {
+export class HTTPConnector extends Connector {
 	#instance;
 
 	constructor(url, apiAuth) {
