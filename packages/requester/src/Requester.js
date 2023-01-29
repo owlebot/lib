@@ -75,7 +75,8 @@ export class Requester {
 	 * 	req: Object
 	 * 	headers: Object
 	 * 	body: Object
-	 * 	correlation: string
+	 * 	correlationID: string
+	 * 	requestID: string
 	 * }
 	 */
 	async #_request(type, url, options = {} ) {
@@ -88,18 +89,17 @@ export class Requester {
 		}
 		
 		// add meta data (correlation ID, request ID)
-		if (options.req && options.req.headers && options.req.headers["x-request-id"] ) {
-			request.headers["x-request-id"] ??= options.req.headers["x-request-id"];
-			request.headers["x-correlation-id"] ??= options.req.headers["x-correlation-id"];
-		} else {
-			request.headers["x-request-id"] = uuidv4();
-		}
+		const requestID = options.requestID || (options.req?.headers && options.req?.headers["x-request-id"] ) || uuidv4();
+		const correlationID = options.correlationID || (options.req?.headers && options.req?.headers["x-correlation-id"] );
+		request.headers["x-request-id"] ??= requestID;
+		request.headers["x-correlation-id"] ??= correlationID;
 		
 		this.#_log(type, url, request);
 		
 		try {
 			const res = await nodeFetch(this.#_createUrl(url), request);
 			if (!res.ok) {
+				console.log("NOT OKKKK");
 				throw new Error(`HTTP Error Response: ${res.status} ${res.statusText}`);
 			}
 			const data = await res.json();
@@ -108,10 +108,10 @@ export class Requester {
 				headers: res.headers,
 				data,
 			} );
-			this.#logger?.debug("Requester", `Response: ${res.status}`, standardResponse.data);
+			this.#logger?.verbose("Requester", `Response: ${res.status}`, standardResponse.data);
 			return standardResponse;
 		} catch (error) {
-			this.#logger?.error("Requester", "Error", error);
+			this.#logger?.error("Requester", `Error requesting ${this.#target}`, error);
 
 			return new Response(
 				{
