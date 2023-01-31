@@ -98,11 +98,14 @@ export class Requester {
 		
 		try {
 			const res = await nodeFetch(this.#_createUrl(url), request);
-			if (!res.ok) {
-				console.log("NOT OKKKK");
-				throw new Error(`HTTP Error Response: ${res.status} ${res.statusText}`);
+			
+			let data;
+			if (res.headers.get("content-type")?.toLowerCase().includes("application/json") ) {
+				data = await res.json();
+			} else {
+				data = await res.text();
 			}
-			const data = await res.json();
+
 			const standardResponse = new Response( {
 				status: res.status,
 				headers: res.headers,
@@ -115,8 +118,8 @@ export class Requester {
 
 			return new Response(
 				{
-					message: error.request?.res?.statusMessage,
-					status: error.request?.res?.statusCode,
+					message: "Error",
+					status: 500,
 				},
 				error
 			);
