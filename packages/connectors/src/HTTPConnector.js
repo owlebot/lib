@@ -1,45 +1,24 @@
-import axios from "axios";
-
+import { Requester } from "../../requester/src/Requester.js";
 import { Connector } from "./Connector.js";
 
 export class HTTPConnector extends Connector {
-	#instance;
+	#requester;
 
-	constructor(url, apiAuth) {
-		super(url);
+	constructor(source, target, url, logger) {
+		super(source, target, url, logger);
 
-		const options = {
-			baseURL: url,
-		};
-
-		if (apiAuth) {
-			options.headers = { authorization: apiAuth };
-		}
-
-		this.#instance = axios.create(options);
+		this.#requester = new Requester(url, { source, target }, logger);
 	}
 
 	async connect() {
 		return true;
 	}
 
-	async send(req, endpoint) {
+	async send(endpoint, data, options) {
 		if (!this.ready) {
 			return false;
 		}
 
-		const request = {
-			method: "post",
-			url: endpoint,
-			data: req,
-		};
-		
-		try {
-			await this.#instance.request(request);
-			return true;
-		} catch (err) {
-			console.error(err);
-			return false;
-		}
+		return this.#requester.post(endpoint, data, options);
 	}
 }

@@ -3,8 +3,17 @@ export class Connector {
 
 	url;
 
-	constructor(url) {
+	logger;
+
+	source;
+
+	target;
+
+	constructor(source, target, url, logger) {
+		this.source = source;
+		this.target = target;
 		this.url = url;
+		this.logger = logger;
 		this._connect();
 	}
 
