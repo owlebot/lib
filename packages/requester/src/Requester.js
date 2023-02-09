@@ -54,7 +54,7 @@ export class Requester {
 	}
 
 	#_log(type, url, request) {
-		let message = `Target: ${this.#target} => ${type.toUpperCase()} ${url}`;
+		let message = `Target: ${this.#target} => ${type.toUpperCase()} ${url.pathname}/${url.search}`;
 		if (request.headers["x-correlation-id"] ) {
 			message += ` ; Correlation ${request.headers["x-correlation-id"]}`;
 		}
@@ -64,8 +64,18 @@ export class Requester {
 		this.#logger?.verbose("Requester", message, request);
 	}
 	
-	#_createUrl(url) {
-		return new URL(url, this.#baseURL).href;
+	#_createUrl(endpoint, query) {
+		const url = new URL(endpoint, this.#baseURL);
+
+		if (query) {
+			const searchParams = new URLSearchParams();
+			for (const key in query) {
+				searchParams.append(key, query[key] );
+			}
+			url.search = searchParams;
+		}
+	
+		return url;
 	}
 
 	/**
@@ -79,7 +89,8 @@ export class Requester {
 	 * 	requestID: string
 	 * }
 	 */
-	async #_request(type, url, options = {} ) {
+	async #_request(type, endpoint, options = {} ) {
+		const url = this.#_createUrl(endpoint, options.query);
 		const request = {
 			method: type,
 			headers: { ...this.#headers, ...options.headers } || this.#headers,
@@ -97,7 +108,7 @@ export class Requester {
 		this.#_log(type, url, request);
 		
 		try {
-			const res = await nodeFetch(this.#_createUrl(url), request);
+			const res = await nodeFetch(url.href, request);
 			
 			let data;
 			if (res.headers.get("content-type")?.toLowerCase().includes("application/json") ) {
@@ -130,11 +141,16 @@ export class Requester {
 	 * Perform a GET request
 	 *
 	 * @param {String} url
+	 * @param {Object} query
 	 * @param {Object} options
 	 * @returns {Promise<Response>}
 	 */
-	get(url, options) {
-		return this.#_request("get", url, options);
+	get(url, query, options) {
+		if (!options) { // backward compat + easier when no query
+			options = query;
+			query = null;
+		}
+		return this.#_request("get", url, { ...options, query } );
 	}
 	
 	/**
