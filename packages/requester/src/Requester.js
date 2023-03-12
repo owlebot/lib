@@ -107,34 +107,36 @@ export class Requester {
 		
 		this.#_log(type, url, request);
 		
-		try {
-			const res = await nodeFetch(url.href, request);
-			
-			let data;
-			if (res.headers.get("content-type")?.toLowerCase().includes("application/json") ) {
-				data = await res.json();
-			} else {
-				data = await res.text();
-			}
+		const response = await nodeFetch(url.href, request);
+		return this.#_handleResponse(response);
+	}
 
-			const standardResponse = new Response( {
-				status: res.status,
-				headers: res.headers,
-				data,
-			} );
-			this.#logger?.verbose("Requester", `Response: ${res.status}`, standardResponse.data);
-			return standardResponse;
-		} catch (error) {
-			this.#logger?.error("Requester", `Error requesting ${this.#target}`, error);
-
-			return new Response(
-				{
-					message: "Error",
-					status: 500,
-				},
-				error
-			);
+	async #_handleResponse(response) {
+		if (response.status !== 200) {
+			this.#logger?.error("Requester", `Error requesting ${this.#target}`);
+			console.log(response);
+			throw new Error();
 		}
+
+		let data;
+		if (response.headers.get("content-type")?.toLowerCase().includes("application/json") ) {
+			data = await response.json();
+		} else {
+			data = await response.text();
+		}
+
+		const standardResponse = new Response( {
+			ok: data.ok,
+			status: response.status,
+			headers: response.headers,
+			data: data.data,
+			error: data.error,
+		} );
+		this.#logger?.verbose("Requester",
+			`Response: ${standardResponse.status}`,
+			standardResponse.ok ? standardResponse.data : standardResponse.error
+		);
+		return standardResponse;
 	}
 	
 	/**

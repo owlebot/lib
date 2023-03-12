@@ -9,18 +9,24 @@
  * @class Response
  */
 export class Response {
-	data = null;
-	
-	headers = null;
+	ok = true;
 
 	status = null;
-	
+
+	headers = null;
+
 	error = null;
+
+	data = null;
 	
-	constructor(res, error = null) {
-		this.data = res.data;
-		this.headers = res.headers?.raw();
-		this.status = res?.status;
-		this.error = error;
+	constructor(data) {
+		this.ok = data.ok;
+		this.status = data.status;
+		this.headers = data.headers?.raw();
+		if (data.ok) {
+			this.data = data.data;
+		} else {
+			this.error = data.error;
+		}
 	}
 }
