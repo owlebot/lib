@@ -16,8 +16,6 @@ export class Requester {
 
 	#target;
 	
-	#instance;
-
 	#logger;
 	
 	/**
@@ -113,9 +111,8 @@ export class Requester {
 
 	async #_handleResponse(response) {
 		if (response.status !== 200) {
-			this.#logger?.error("Requester", `Error requesting ${this.#target}`);
-			console.log(response);
-			throw new Error();
+			this.#logger?.error("Requester", `Error requesting ${this.#target} (${response.url}): ${response.status} ${response.statusText}`);
+			throw new Error(response.stack);
 		}
 
 		let data;

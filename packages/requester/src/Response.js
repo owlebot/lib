@@ -15,9 +15,9 @@ export class Response {
 
 	headers = null;
 
-	error = null;
-
 	data = null;
+
+	error = null;
 	
 	constructor(data) {
 		this.ok = data.ok;
