@@ -18,6 +18,14 @@ export class Server {
 		this.logger = logger;
 		this.addMiddleware(loggerMiddleware(logger) );
 	}
+	
+	async addSwagger(swaggerConfig) {
+		if (process.env.NODE_ENV === "local") {
+			const swaggerUi = await import("swagger-ui-express");
+			
+			this.app.use("/swagger", swaggerUi.serve, swaggerUi.setup(swaggerConfig) );
+		}
+	}
 
 	addMiddleware(middleware) {
 		this.app.use(middleware);
