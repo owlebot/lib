@@ -83,7 +83,7 @@ export class Requester {
 	 * 	req: Object
 	 * 	headers: Object
 	 * 	body: Object
-	 * 	correlationID: string
+	 * 	correlationId: string
 	 * 	requestID: string
 	 * }
 	 */
@@ -99,9 +99,9 @@ export class Requester {
 		
 		// add meta data (correlation ID, request ID)
 		const requestID = options.requestID || (options.req?.headers && options.req?.headers["x-request-id"] ) || uuidv4();
-		const correlationID = options.correlationID || (options.req?.headers && options.req?.headers["x-correlation-id"] );
+		const correlationId = options.correlationId || (options.req?.headers && options.req?.headers["x-correlation-id"] );
 		request.headers["x-request-id"] ??= requestID;
-		request.headers["x-correlation-id"] ??= correlationID;
+		request.headers["x-correlation-id"] ??= correlationId;
 		
 		this.#_log(type, url, request);
 		
