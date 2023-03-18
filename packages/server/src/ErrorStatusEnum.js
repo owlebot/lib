@@ -38,4 +38,9 @@ export const ErrorStatusEnum = {
 		code: 3002,
 		message: "Could not delete",
 	},
+	UNLINK_ERROR: {
+		code: 4000,
+		message: "Could not unlink",
+	},
+
 };

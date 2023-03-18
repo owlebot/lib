@@ -19,7 +19,7 @@ export class ServerResponse {
 		}
 	}
 
-	static send(res, data) {
+	static sendSuccess(res, data) {
 		return res.status(200)
 			.json(new ServerResponse(true, { data } ) );
 	}
@@ -27,5 +27,12 @@ export class ServerResponse {
 	static sendError(res, errorEnum, message) {
 		return res.status(200)
 			.json(new ServerResponse(false, { code: errorEnum.code, message: message ?? errorEnum.message } ) );
+	}
+
+	static send(res, ok, data, errorEnum, message) {
+		if (ok) {
+			return this.sendSuccess(res, data);
+		}
+		return this.sendError(res, errorEnum, message);
 	}
 }
