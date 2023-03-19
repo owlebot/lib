@@ -1,11 +1,20 @@
+/**
+ * Response object send back by any service
+ *
+ * @prop {Boolean} ok Whereas the request was ok or not
+ * @prop {Object} data The reponse data
+ * @prop {Object} error The error if any
+ * @prop {Number} error.code The error code
+ * @prop {String} error.message The error message
+ *
+ * @class ServerResponse
+ */
 export class ServerResponse {
 	ok = true;
 
 	data = null;
 
 	error = null;
-
-	errorMessage = null;
 
 	constructor(ok, data) {
 		this.ok = ok;

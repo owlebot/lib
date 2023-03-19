@@ -1,10 +1,13 @@
 /**
  * Response object from any HTTP Request
  *
- * @prop {Object} data The reponse data
- * @prop {Object} headers The response headers
+ * @prop {Boolean} ok Whereas the request was ok or not
  * @prop {String} status The response status code
- * @prop {String | null} error The error if any
+ * @prop {Object} headers The response headers
+ * @prop {Object} data The reponse data
+ * @prop {Object} error The error if any
+ * @prop {Number} error.code The error code
+ * @prop {String} error.message The error message
  *
  * @class Response
  */

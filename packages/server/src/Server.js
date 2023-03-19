@@ -2,6 +2,7 @@ import express from "express";
 
 import { errorMiddleware, loggerMiddleware } from "../../middlewares/index.js";
 import { createRouter } from "./Router.js";
+import { getSwaggerOptions } from "./swagger.js";
 
 export class Server {
 	app = null;
@@ -19,11 +20,19 @@ export class Server {
 		this.addMiddleware(loggerMiddleware(logger) );
 	}
 	
-	async addSwagger(swaggerConfig) {
+	/**
+	 * Add swagger if NODE_ENV is "local"
+	 * @param {Object} swaggerOptions
+	 */
+	async addSwagger(swaggerOptions) {
 		if (process.env.NODE_ENV === "local") {
 			const swaggerUi = await import("swagger-ui-express");
+			const { default: swaggerJsdoc } = await import("swagger-jsdoc");
 			
-			this.app.use("/swagger", swaggerUi.serve, swaggerUi.setup(swaggerConfig) );
+			const openapiSpecification = swaggerJsdoc(getSwaggerOptions(swaggerOptions) );
+			this.logger.info("Swagger", "Initialising Swagger with config: ", openapiSpecification);
+			this.app.use("/swagger", swaggerUi.serve, swaggerUi.setup(openapiSpecification) );
+			this.logger.info("Swagger", "Swagger server started!");
 		}
 	}
 
