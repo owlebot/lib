@@ -6,6 +6,7 @@ export function getSwaggerOptions(swaggerOptions) {
 				title: `Docs for ${swaggerOptions.name}`,
 				version: "1.0.0",
 			},
+			produces: ["application/json"],
 		},
 		apis: [swaggerOptions.path || "./src/routes/*.js"], // files containing annotations as above
 	};
