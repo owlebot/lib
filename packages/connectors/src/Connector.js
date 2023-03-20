@@ -22,9 +22,9 @@ export class Connector {
 		
 		if (feedback) {
 			this.ready = true;
-			console.log("[INFO] - connector | CONNECTION SUCCESS");
+			this.logger?.info("Connector", `Connection success to ${this.target} (${this.url})`);
 		} else {
-			console.log("[INFO] - connector | CONNECTION ERROR");
+			this.logger?.info("Connector", `Connection error to ${this.target} (${this.url})`);
 		}
 	}
 
