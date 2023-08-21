@@ -12,6 +12,7 @@
  * @typedef {Object} AccountAccountsObject
  * @property {Function} resolve
  * @property {Function} def
+ * @property {Function} router
  * @property {ResolveObject} _
  */
 
@@ -37,6 +38,7 @@
  * @typedef {Object} AccountChannelsObject
  * @property {Function} resolve
  * @property {Function} def
+ * @property {Function} router
  * @property {AccountSubChannelsObject} _
  */
 
@@ -62,6 +64,7 @@
  * @typedef {Object} AccountCommunitiesObject
  * @property {Function} resolve
  * @property {Function} def
+ * @property {Function} router
  * @property {AccountSubCommunitiesObject} _
  */
 
@@ -88,6 +91,7 @@
  * @typedef {Object} AccountUsersObject
  * @property {Function} resolve
  * @property {Function} def
+ * @property {Function} router
  * @property {AccountSubUsersObject} _
  */
 

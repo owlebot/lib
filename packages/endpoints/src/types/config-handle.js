@@ -12,6 +12,7 @@
  * @typedef {Object} ConfigHandleCommunitiesObject
  * @property {Function} resolve
  * @property {Function} def
+ * @property {Function} router
  * @property {ResolveObject} _
  */
 
@@ -23,6 +24,7 @@
  * @typedef {Object} ConfigHandleUsersObject
  * @property {Function} resolve
  * @property {Function} def
+ * @property {Function} router
  * @property {ResolveObject} COPY
  * @property {ResolveObject} _
  */

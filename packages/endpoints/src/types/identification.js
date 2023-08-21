@@ -19,6 +19,7 @@
  * @typedef {Object} IdentificationAccountsObject
  * @property {Function} resolve
  * @property {Function} def
+ * @property {Function} router
  * @property {IdentificationSubAccountsObject} _
  */
 
@@ -52,6 +53,7 @@
  * @typedef {Object} IdentificationChannelsObject
  * @property {Function} resolve
  * @property {Function} def
+ * @property {Function} router
  * @property {IdentificationSubChannelsObject} _
  */
 
@@ -70,6 +72,7 @@
  * @typedef {Object} IdentificationCommunitiesObject
  * @property {Function} resolve
  * @property {Function} def
+ * @property {Function} router
  * @property {IdentificationSubCommunitiesObject} _
  */
 
@@ -90,6 +93,7 @@
  * @typedef {Object} IdentificationUsersObject
  * @property {Function} resolve
  * @property {Function} def
+ * @property {Function} router
  * @property {IdentificationSubUsersObject} _
  */
 

@@ -35,6 +35,7 @@
  * @typedef {Object} ProfileCommunitiesObject
  * @property {Function} resolve
  * @property {Function} def
+ * @property {Function} router
  * @property {ProfileCommunitiesSubObject} _
  */
 
@@ -46,6 +47,7 @@
  * @typedef {Object} ProfileCustomObject
  * @property {Function} resolve
  * @property {Function} def
+ * @property {Function} router
  * @property {ResolveObject} INCREMENT
  */
 
@@ -57,6 +59,7 @@
  * @typedef {Object} ProfileGlobalObject
  * @property {Function} resolve
  * @property {Function} def
+ * @property {Function} router
  * @property {ResolveObject} INCREMENT
  */
 
@@ -75,6 +78,7 @@
  * @typedef {Object} ProfileUsersObject
  * @property {Function} resolve
  * @property {Function} def
+ * @property {Function} router
  * @property {ProfileSubUsersObject} _
  */
 

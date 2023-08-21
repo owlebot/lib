@@ -18,7 +18,11 @@ const generate = (node, path, routerPath) => {
 	}
 
 	output.resolve = (...args) => buildPath(...args);
-	output.def = (...args) => (node.router ? routerPath(...args) + node.resolve : buildRouterPath(...args) );
+	output.def = (...args) => buildRouterPath(...args);
+	
+	if (node.router) {
+		output.router = (...args) => routerPath(...args) + node.resolve;
+	}
 
 	for (const key in node) {
 		if (key !== "resolve" && key !== "router") {

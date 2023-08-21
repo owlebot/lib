@@ -20,6 +20,7 @@
  * @typedef {Object} ConfigReadCommunitiesObject
  * @property {Function} resolve
  * @property {Function} def
+ * @property {Function} router
  * @property {ConfigReadCommunitiesSubObject} _
  */
 
@@ -38,6 +39,7 @@
  * @typedef {Object} ConfigReadUsersObject
  * @property {Function} resolve
  * @property {Function} def
+ * @property {Function} router
  * @property {ConfigReadSubUsersObject} _
  */
 
@@ -49,6 +51,7 @@
  * @typedef {Object} ConfigReadGlobalObject
  * @property {Function} resolve
  * @property {Function} def
+ * @property {Function} router
  * @property {ResolveObject} INVALIDATE
  */
 

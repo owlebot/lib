@@ -26,6 +26,7 @@
  * @typedef {Object} StatsCommunitiesObject
  * @property {Function} resolve
  * @property {Function} def
+ * @property {Function} router
  * @property {StatsSubCommunitiesObject} _
  */
 
@@ -37,6 +38,7 @@
  * @typedef {Object} StatsUsersObject
  * @property {Function} resolve
  * @property {Function} def
+ * @property {Function} router
  * @property {ResolveObject} _
  */
 

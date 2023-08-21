@@ -16,7 +16,8 @@ assert.strictEqual(AUTOEVENT_DISPATCHER.EVENTS.resolve("test"), "/test/");
 
 console.log("=== DEF ===");
 console.log("CONFIG_READ");
-assert.strictEqual(CONFIG_READ.COMMUNITIES.def(), "/communities/");
+assert.strictEqual(CONFIG_READ.COMMUNITIES.def(), "/");
+assert.strictEqual(CONFIG_READ.COMMUNITIES.router(), "/communities/");
 assert.strictEqual(CONFIG_READ.COMMUNITIES._.MODULES.def("test"), "/test/modules/");
 console.log("ACCOUNT");
 assert.strictEqual(ACCOUNT.COMMUNITIES._.CHANNELS._.def("test1", "test2"), "/test1/channels/test2/");
