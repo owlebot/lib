@@ -1,6 +1,7 @@
 import nodeFetch from "node-fetch";
 import { v4 as uuidv4 } from "uuid";
 
+import { getFullUrl } from "./create.js";
 import { Response } from "./Response.js";
 
 /**
@@ -37,6 +38,17 @@ export class Requester {
 		
 		this.#logger = logger;
 		this.#logger?.info("Requester", `Initialisation for ${this.#target}: ${this.#baseURL}`);
+	}
+
+	/**
+	 * Create an instance of Requester for a specific source / target
+	 * @param {String} source
+	 * @param {String} target
+	 * @param {Logger} logger
+	 * @returns {Requester}
+	 */
+	static create(source, target, logger) {
+		return new Requester(getFullUrl(target), { source, target }, logger);
 	}
 
 	/**
@@ -80,7 +92,7 @@ export class Requester {
 	 *
 	 * options obj
 	 * {
-	 * 	req: Object
+	 * 	context: Object (eq to the req object in most cases)
 	 * 	headers: Object
 	 * 	body: Object
 	 * 	correlationId: string
@@ -98,8 +110,8 @@ export class Requester {
 		}
 		
 		// add meta data (correlation ID, request ID)
-		const requestId = options.requestId || (options.req?.headers && options.req?.headers["x-request-id"] ) || uuidv4();
-		const correlationId = options.correlationId || (options.req?.headers && options.req?.headers["x-correlation-id"] );
+		const requestId = options.requestId || (options.context?.headers && options.context?.headers["x-request-id"] ) || uuidv4();
+		const correlationId = options.correlationId || (options.context?.headers && options.context?.headers["x-correlation-id"] );
 		request.headers["x-request-id"] ??= requestId;
 		request.headers["x-correlation-id"] ??= correlationId;
 		
