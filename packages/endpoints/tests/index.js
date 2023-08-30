@@ -12,7 +12,7 @@ assert.strictEqual(ACCOUNT.COMMUNITIES._.resolve("test"), "/communities/test/");
 console.log("STATS");
 assert.strictEqual(STATS.USERS._.resolve("test"), "/users/test/");
 console.log("AUTOEVENT_DISPATCHER");
-assert.strictEqual(AUTOEVENT_DISPATCHER.EVENTS.resolve("test"), "/test/");
+assert.strictEqual(AUTOEVENT_DISPATCHER.EVENTS._.resolve("test"), "/test/");
 
 console.log("=== DEF ===");
 console.log("CONFIG_READ");
@@ -25,4 +25,4 @@ assert.strictEqual(ACCOUNT.COMMUNITIES._.def("test"), "/test/");
 console.log("STATS");
 assert.strictEqual(STATS.USERS._.def("test"), "/test/");
 console.log("AUTOEVENT_DISPATCHER");
-assert.strictEqual(AUTOEVENT_DISPATCHER.EVENTS.def("test"), "/test/");
+assert.strictEqual(AUTOEVENT_DISPATCHER.EVENTS._.def("test"), "/test/");

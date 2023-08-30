@@ -68,10 +68,18 @@
 //
 
 /**
+ * @typedef {Object} ProfileMembersUsersObject
+ * @property {Function} resolve
+ * @property {Function} def
+ * @property {ResolveObject} SYNC
+ */
+
+/**
  * @typedef {Object} ProfileSubUsersObject
  * @property {Function} resolve
  * @property {Function} def
  * @property {ResolveObject} SYNC
+ * @property {ProfileMembersUsersObject} MEMBERS
  */
 
 /**
@@ -130,6 +138,10 @@ export const PROFILE = {
 		_: {
 			resolve: (id) => `${id}/`,
 			SYNC: "sync/",
+			MEMBERS: {
+				resolve: "members/",
+				SYNC: "sync/",
+			},
 		},
 	},
 };

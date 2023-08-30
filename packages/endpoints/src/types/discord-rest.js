@@ -5,11 +5,11 @@
  */
 
 //
-// EVENTS
+// GUILDS
 //
 
 /**
- * @typedef {Object} AutoeventDispatcherEventsObject
+ * @typedef {Object} DiscordRestGuildsObject
  * @property {Function} resolve
  * @property {Function} def
  * @property {Function} router
@@ -21,16 +21,16 @@
 //
 
 /**
- * @typedef {Object} AutoeventDispatcherObject
+ * @typedef {Object} DiscordRestObject
  * @property {Function} resolve
  * @property {Function} def
- * @property {AutoeventDispatcherEventsObject} EVENTS
+ * @property {DiscordRestGuildsObject} GUILDS
  */
 
-export const AUTOEVENT_DISPATCHER = {
+export const DISCORD_REST = {
 	resolve: "/",
-	EVENTS: {
-		resolve: "events/",
+	GUILDS: {
+		resolve: "guilds/",
 		router: true,
 		_: {
 			resolve: (id) => `${id}/`,

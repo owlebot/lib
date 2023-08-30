@@ -5,11 +5,11 @@
  */
 
 //
-// EVENTS
+// CHANNELS
 //
 
 /**
- * @typedef {Object} AutoeventDispatcherEventsObject
+ * @typedef {Object} TwitchGwChannelsObject
  * @property {Function} resolve
  * @property {Function} def
  * @property {Function} router
@@ -21,16 +21,16 @@
 //
 
 /**
- * @typedef {Object} AutoeventDispatcherObject
+ * @typedef {Object} TwitchGwObject
  * @property {Function} resolve
  * @property {Function} def
- * @property {AutoeventDispatcherEventsObject} EVENTS
+ * @property {TwitchGwChannelsObject} CHANNELS
  */
 
-export const AUTOEVENT_DISPATCHER = {
+export const TWITCH_GW = {
 	resolve: "/",
-	EVENTS: {
-		resolve: "events/",
+	CHANNELS: {
+		resolve: "channels/",
 		router: true,
 		_: {
 			resolve: (id) => `${id}/`,
