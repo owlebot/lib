@@ -12,6 +12,10 @@ export const ErrorStatusEnum = {
 		code: 1200,
 		message: "Error",
 	},
+	XP_PUSH: {
+		code: 1300,
+		message: "Error",
+	},
 
 	PG_CREATE: {
 		code: 2000,
