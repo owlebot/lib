@@ -64,7 +64,7 @@ export class Requester {
 	}
 
 	#_log(type, url, request) {
-		let message = `Target: ${this.#target} => ${type.toUpperCase()} ${url.pathname}/${url.search}`;
+		let message = `Target: ${this.#target} => ${type.toUpperCase()} ${url.pathname}${url.search}`;
 		if (request.headers["x-correlation-id"] ) {
 			message += ` ; Correlation ${request.headers["x-correlation-id"]}`;
 		}
