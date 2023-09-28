@@ -13,6 +13,7 @@
  * @property {Function} resolve
  * @property {Function} def
  * @property {ResolveObject} USER
+ * @property {ResolveObject} IDENTIFY
  */
 
 /**
@@ -62,10 +63,18 @@
 //
 
 /**
+ * @typedef {Object} IdentificationCommunityMemberObject
+ * @property {Function} resolve
+ * @property {Function} def
+ * @property {ResolveObject} _
+ */
+
+/**
  * @typedef {Object} IdentificationSubCommunitiesObject
  * @property {Function} resolve
  * @property {Function} def
  * @property {ResolveObject} OWNER
+ * @property {IdentificationCommunityMemberObject} MEMBERS
  */
 
 /**
@@ -119,6 +128,7 @@ export const IDENTIFICATION = {
 		_: {
 			resolve: (id) => `${id}/`,
 			USER: "user/",
+			IDENTIFY: "identify/",
 		},
 	},
 	CHANNELS: {
@@ -142,6 +152,12 @@ export const IDENTIFICATION = {
 		_: {
 			resolve: (id) => `${id}/`,
 			OWNER: "owner/",
+			MEMBERS: {
+				resolve: "members/",
+				_: {
+					resolve: (id) => `${id}/`,
+				},
+			},
 		},
 	},
 	USERS: {

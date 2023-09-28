@@ -10,6 +10,15 @@
 	"engines": {
 		"node": ">=18.0.0"
 	},
+	"exports": {
+		".": "./index.js",
+		"./connectors": "./packages/connectors/index.js",
+		"./endpoints": "./packages/endpoints/index.js",
+		"./helpers": "./packages/helpers/index.js",
+		"./middlewares": "./packages/middlewares/index.js",
+		"./requester": "./packages/requester/index.js",
+		"./server": "./packages/server/index.js"
+	},
 	"dependencies": {
 		"amqplib": "^0.10.3",
 		"express": "5.0.0-beta.1",
