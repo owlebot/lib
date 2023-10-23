@@ -7,10 +7,13 @@ import { getSwaggerOptions } from "./swagger.js";
 export class Server {
 	app = null;
 
+	port = 3000;
+
 	logger;
 
-	init() {
+	init(port = 3000) {
 		this.app = express();
+		this.port = port;
 		this.addMiddleware(express.json() );
 		this.addMiddleware(express.urlencoded() );
 	}
@@ -30,15 +33,15 @@ export class Server {
 			const { default: swaggerJsdoc } = await import("swagger-jsdoc");
 			
 			const openapiSpecification = swaggerJsdoc(getSwaggerOptions(swaggerOptions) );
-			this.logger.info("Swagger", "Initialising Swagger with config", openapiSpecification);
+			this.logger.info("Server", "Initialising Swagger with config", openapiSpecification);
 			this.app.use("/swagger", swaggerUi.serve, swaggerUi.setup(openapiSpecification) );
-			this.logger.info("Swagger", "/swagger => Swagger server started!");
+			this.logger.info("Server", `${this._host()}/swagger => Swagger server started!`);
 		}
 	}
 	
 	addHealthEndpoint() {
-		this.app.use("/health", (req, res) => res.status(200).send( {} ) );
-		this.logger.info("Health", "/health => Health endpoint active!");
+		this.app.use("/health", (req, res) => res.status(200).send( { status: "OK" } ) );
+		this.logger.info("Server", `${this._host()}/health => Health endpoint active!`);
 	}
 
 	addMiddleware(middleware) {
@@ -51,9 +54,13 @@ export class Server {
 		return router;
 	}
 
-	start(port) {
+	start() {
 		this.addMiddleware(errorMiddleware(this.logger) );
 
-		this.app.listen(port, () => this.logger.init(port) );
+		this.app.listen(this.port, () => this.logger.notice("Server", `${this._host()} => Server started!`) );
+	}
+
+	_host() {
+		return `http://localhost:${this.port}`;
 	}
 }
