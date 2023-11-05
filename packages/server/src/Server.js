@@ -1,6 +1,7 @@
 import express from "express";
 
 import { errorMiddleware, loggerMiddleware } from "../../middlewares/index.js";
+import { notFoundMiddleware } from "../../middlewares/src/middlewareNotFound.js";
 import { createRouter } from "./Router.js";
 import { getSwaggerOptions } from "./swagger.js";
 
@@ -39,8 +40,12 @@ export class Server {
 		}
 	}
 	
-	addHealthEndpoint() {
-		this.app.use("/health", (req, res) => res.status(200).send( { status: "OK" } ) );
+	addHealthEndpoint(func) {
+		let ok = true;
+		if (func) {
+			ok = func();
+		}
+		this.app.use("/health", (req, res) => res.status(ok ? 200 : 500).send( { status: ok ? "OK" : "KO" } ) );
 		this.logger.info("Server", `${this._host()}/health => Health endpoint active!`);
 	}
 
@@ -56,6 +61,7 @@ export class Server {
 
 	start() {
 		this.addMiddleware(errorMiddleware(this.logger) );
+		this.addMiddleware(notFoundMiddleware(this.logger) );
 
 		this.app.listen(this.port, () => this.logger.notice("Server", `${this._host()} => Server started!`) );
 	}
