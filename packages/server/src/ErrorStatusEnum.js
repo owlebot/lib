@@ -1,4 +1,9 @@
 export const ErrorStatusEnum = {
+	GENERIC_ERROR: {
+		code: 1,
+		message: "Generic error",
+	},
+	
 	TWITCH_ERROR: {
 		code: 1000,
 		message: "Could not find twitch user",
@@ -46,5 +51,4 @@ export const ErrorStatusEnum = {
 		code: 4000,
 		message: "Could not unlink",
 	},
-
 };
