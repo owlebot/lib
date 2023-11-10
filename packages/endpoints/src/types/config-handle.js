@@ -9,11 +9,18 @@
 //
 
 /**
+ * @typedef {Object} ConfigHandleCommunitiesSubObject
+ * @property {Function} resolve
+ * @property {Function} def
+ * @property {ResolveObject} MODULES
+ */
+
+/**
  * @typedef {Object} ConfigHandleCommunitiesObject
  * @property {Function} resolve
  * @property {Function} def
  * @property {Function} router
- * @property {ResolveObject} _
+ * @property {ConfigHandleCommunitiesSubObject} _
  */
 
 //
@@ -48,6 +55,7 @@ export const CONFIG_HANDLE = {
 		router: true,
 		_: {
 			resolve: (id) => `${id}/`,
+			MODULES: "modules/",
 		},
 	},
 	USERS: {
