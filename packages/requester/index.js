@@ -1,2 +1,2 @@
-export { Requester } from "./src/Requester.js";
-export { Response } from "./src/Response.js";
+export { Requester } from "./src/requester.js";
+export { Response } from "./src/response.js";

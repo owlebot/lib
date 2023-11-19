@@ -1,2 +1,3 @@
-export { errorMiddleware } from "./src/middlewareError.js";
-export { loggerMiddleware } from "./src/middlewareLogger.js";
+export { errorMiddleware } from "./src/middleware-error.js";
+export { loggerMiddleware } from "./src/middleware-logger.js";
+export { notFoundMiddleware } from "./src/middleware-not-found.js";

@@ -1,8 +1,7 @@
 import express from "express";
 
-import { errorMiddleware, loggerMiddleware } from "../../middlewares/index.js";
-import { notFoundMiddleware } from "../../middlewares/src/middlewareNotFound.js";
-import { createRouter } from "./Router.js";
+import { errorMiddleware, loggerMiddleware, notFoundMiddleware } from "../../middlewares/index.js";
+import { createRouter } from "./router.js";
 import { getSwaggerOptions } from "./swagger.js";
 
 export class Server {

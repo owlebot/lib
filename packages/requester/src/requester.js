@@ -2,7 +2,7 @@ import nodeFetch from "node-fetch";
 import { v4 as uuidv4 } from "uuid";
 
 import { getFullUrl } from "./create.js";
-import { Response } from "./Response.js";
+import { Response } from "./response.js";
 
 /**
  * Universal HTTP Request.
@@ -31,7 +31,7 @@ export class Requester {
 		this.#baseURL = base;
 		this.#target = options.target || base;
 		const baseHeaders = {
-			"User-Agent": options.source || "Owlebot",
+			"User-Agent": `OWLEBOT.${options.source}` || "OWLEBOT",
 			"Content-Type": "application/json",
 		};
 		this.#headers = options.headers ? { ...baseHeaders, ...options.headers } : baseHeaders;
