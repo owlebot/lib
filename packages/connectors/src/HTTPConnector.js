@@ -1,4 +1,4 @@
-import { Requester } from "../../requester/src/Requester.js";
+import { Requester } from "../../requester/index.js";
 import { Connector } from "./Connector.js";
 
 export class HTTPConnector extends Connector {
