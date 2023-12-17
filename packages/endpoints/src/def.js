@@ -7,6 +7,7 @@ import { CONFIG_HANDLE } from "./types/config-handle.js";
 import { CONFIG_READ } from "./types/config-read.js";
 import { DISCORD_REST } from "./types/discord-rest.js";
 import { IDENTIFICATION } from "./types/identification.js";
+import { OPEN_API } from "./types/open-api.js";
 import { PROFILE } from "./types/profile.js";
 import { STATS } from "./types/stats.js";
 import { TWITCH_GW } from "./types/twitch-gw.js";
@@ -24,6 +25,7 @@ import { XP_READ } from "./types/xp-read.js";
  * @property {import("./types/config-read").ConfigReadObject} CONFIG_READ - CONFIG_READ endpoints
  * @property {import("./types/discord-rest").DiscordRestObject} DISCORD_REST - DISCORD_REST endpoints
  * @property {import("./types/identification").IdentificationObject} IDENTIFICATION - IDENTIFICATION endpoints
+ * @property {import("./types/open-api").OpenApiObject} OPEN_API - OPEN_API endpoints
  * @property {import("./types/profile").ProfileObject} PROFILE - PROFILE endpoints
  * @property {import("./types/stats").StatsObject} STATS - PROFILE endpoints
  * @property {import("./types/twitch-gw").TwitchGwObject} TWITCH_GW - TWITCH_GW endpoints
@@ -40,6 +42,7 @@ export const definition = {
 	CONFIG_READ,
 	DISCORD_REST,
 	IDENTIFICATION,
+	OPEN_API,
 	PROFILE,
 	STATS,
 	TWITCH_GW,

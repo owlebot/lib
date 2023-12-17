@@ -15,6 +15,7 @@ export const { CONFIG_HANDLE } = ENDPOINTS;
 export const { CONFIG_READ } = ENDPOINTS;
 export const { DISCORD_REST } = ENDPOINTS;
 export const { IDENTIFICATION } = ENDPOINTS;
+export const { OPEN_API } = ENDPOINTS;
 export const { PROFILE } = ENDPOINTS;
 export const { STATS } = ENDPOINTS;
 export const { TWITCH_GW } = ENDPOINTS;
