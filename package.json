@@ -1,6 +1,6 @@
 {
 	"name": "@owlebot/lib",
-	"version": "0.7.1",
+	"version": "0.8.0",
 	"description": "Owlebot central shared repository.",
 	"author": "Khaaz <khaaz.dev@gmail.com>, Xerstom <xerstomdev@outlook.fr>",
 	"link": "https://github.com/owlebot/lib",
