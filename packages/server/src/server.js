@@ -28,6 +28,7 @@ export class Server {
 	 * @param {Object} options
 	 * @param {Boolean} options.enableProd - Whether to enable swagger in prod
 	 * @param {Boolean} options.generateFromJsDoc - Whether to generate OpenApi definition from jsdoc
+	 * @param {Boolean} options.url - Swagger target URL
 	 * @param {Object} options.definition - OpenApi definition
 	 * @param {Object} options.meta - Meta data to build swagger template
 	 */
@@ -49,7 +50,7 @@ export class Server {
 					openapiSpecification = swaggerJsdocLoader(buildSwaggerJsdocOptions(options.meta) );
 				}
 			} else { // use provded spec definition
-				openapiSpecification = buildSwaggerOptions(options.definition, options.meta);
+				openapiSpecification = buildSwaggerOptions(options.definition, options.meta, options.urlProd);
 			}
 			
 			if (!openapiSpecification) {

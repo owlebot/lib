@@ -15,11 +15,11 @@ export function buildSwaggerJsdocOptions(meta) {
 	return options;
 }
 
-export function buildSwaggerOptions(definition, meta) {
+export function buildSwaggerOptions(definition, meta, url) {
 	const options = definition;
 
 	if (process.env.NODE_ENV !== "local") {
-		options.servers = [{ url: "https://api.owle.bot/v1" }];
+		options.servers = [{ url }];
 	}
 
 	if (meta.name) {
