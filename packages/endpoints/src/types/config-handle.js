@@ -56,6 +56,7 @@ export const CONFIG_HANDLE = {
 		_: {
 			resolve: (id) => `${id}/`,
 			MODULES: "modules/",
+			RESET: "reset/",
 		},
 	},
 	USERS: {
