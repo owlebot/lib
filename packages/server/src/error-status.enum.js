@@ -23,4 +23,8 @@ export const ErrorStatusEnum = {
 		code: 5,
 		message: "Issue when calling an other owlebot API",
 	},
+	INPUT_VALIDATION: {
+		code: 100,
+		message: "Issue with provided inputs",
+	},
 };
