@@ -28,6 +28,7 @@
  * @property {Function} resolve
  * @property {Function} def
  * @property {ResolveObject} SYNC
+ * @property {ResolveObject} FULL
  * @property {ProfileMembersObject} MEMBERS
  */
 
@@ -112,6 +113,7 @@ export const PROFILE = {
 		_: {
 			resolve: (id) => `${id}/`,
 			SYNC: "sync/",
+			FULL: "full/",
 			MEMBERS: {
 				resolve: "members/",
 				SYNC: "sync/",
